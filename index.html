@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PokeForça</title>
+    <style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo">
+        </div>
+        <div class="score-board">
+            <span>Player: 0</span>
+            <span>CPU: 0</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="game-area">
+            <div id="player-deck" class="deck"></div>
+            <div class="versus"> VS </div>
+            <div id="cpu-deck" class="deck hidden"></div>
+        </section>
+
+        <div class="controls">
+            <button id="start-btn" class="btn">Começar Jogo</button>
+            <button id="battle-btn" class="btn hidden">Batalhar!</button>
+        </div>
+
+        <div id="result-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="close-modal">×</div>
+                <h2 id="result-title"></h2>
+                <div class="result-details">
+                    <div class="team player-team">
+                        <h3>Seu Time</h3>
+                        <div id="player-result"></div>
+                    </div>
+                    <div class="team cpu-team">
+                        <h3>Time Inimigo</h3>
+                        <div id="cpu-result"></div>
+                    </div>
+                </div>
+                <button id="reset-btn" class="btn">Jogar Novamente</button>
+            </div>
+        </div>
+    </main>
+
+<audio id="battle-music" src="https://www.fesliyanstudios.com/musicfiles/2019-06-11_-_Battle_Lines_-_David_Fesliyan.mp3"></audio>
+<audio id="attack-sound" src="https://www.soundjay.com/button/sounds/button-35.mp3"></audio>
+<script src="script.js"></script>
+</body>
+</html>
