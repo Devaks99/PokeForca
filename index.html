@@ -3,58 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logocharizard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>PokeForça</title>
+    
     <style>
+          body {
+            margin: 0;
+        }
+
         .hidden {
             display: none !important;
+        }
+        
+        /* Estilos da tela inicial */
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url("https://wallpapers.com/images/high/cool-pokemon-pictures-nqv3z4364dpii6wz.webp") no-repeat center center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .start-content {
+            text-align: center;
+            padding: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-top: -60px; /* Compensa a altura da logo */
+        }
+
+        /* Ajuste da logo */
+        #start-screen img {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            height: 80px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo">
+    <!-- Tela Inicial -->
+   <a href="#"><div id="start-screen">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo" style="height: 80px; margin-top: 30px; margin-left: 60px;">
+        <div class="start-content">
+            <button id="start-game-btn" class="btn" onclick="startGame()">
+                Começar Jogo!
+            </button>
         </div>
-        <div class="score-board">
+    </div>
+</a>
+    <!-- Conteúdo do Jogo (inicialmente escondido) -->
+      <header class="hidden">
+        <a href="index.html"> <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" alt="Pokémon Logo" style="cursor: pointer;">
+          </div>
+        </a>
+          <div class="score-board">
             <span>Player: 0</span>
             <span>CPU: 0</span>
-        </div>
+          </div>
     </header>
 
-    <main class="container">
+
+    <main class="container hidden">
         <section class="game-area">
-            <div id="player-deck" class="deck"></div>
+            <!-- Player Deck com título -->
+            <div class="team-container">
+                <h1 class="team-title">Escolha seu time!</h1>
+                <div id="player-deck" class="deck"></div>
+            </div>
+            
             <div class="versus"> VS </div>
-            <div id="cpu-deck" class="deck hidden"></div>
+            
+            <!-- CPU Deck com título -->
+            <div class="team-container">
+                <h1 class="team-title hidden">Time Adversário</h1>
+                <div id="cpu-deck" class="deck hidden"></div>
+            </div>
         </section>
 
         <div class="controls">
-            <button id="start-btn" class="btn">Começar Jogo</button>
             <button id="battle-btn" class="btn hidden">Batalhar!</button>
         </div>
 
         <div id="result-modal" class="modal hidden">
             <div class="modal-content">
-                <div class="close-modal">×</div>
-                <h2 id="result-title"></h2>
-                <div class="result-details">
-                    <div class="team player-team">
-                        <h3>Seu Time</h3>
-                        <div id="player-result"></div>
-                    </div>
-                    <div class="team cpu-team">
-                        <h3>Time Inimigo</h3>
-                        <div id="cpu-result"></div>
-                    </div>
+                <span class="close-modal">&times;</span>
+                <div id="result-title"></div>
+                <div class="result-columns">
+                    <div id="player-result" class="result-column"></div>
+                    <div id="cpu-result" class="result-column"></div>
                 </div>
-                <button id="reset-btn" class="btn">Jogar Novamente</button>
+                <button id="reset-btn" class="btn">Próxima Rodada</button>
             </div>
         </div>
     </main>
 
-<audio id="battle-music" src="https://www.fesliyanstudios.com/musicfiles/2019-06-11_-_Battle_Lines_-_David_Fesliyan.mp3"></audio>
-<audio id="attack-sound" src="https://www.soundjay.com/button/sounds/button-35.mp3"></audio>
+    <audio id="battle-music" src="https://www.fesliyanstudios.com/musicfiles/2019-06-11_-_Battle_Lines_-_David_Fesliyan.mp3"></audio>
+    <audio id="attack-sound" src="https://www.soundjay.com/button/sounds/button-35.mp3"></audio>
+    
+
+<audio id="battle-music" src="sua_musica.mp3"></audio>
+<audio id="attack-sound" src="seu_som.mp3"></audio>
 <script src="script.js"></script>
 </body>
 </html>

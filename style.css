@@ -21,47 +21,74 @@ header {
 }
 
 .logo img {
-    height: 50px;
+    height: 80px;
+    margin-left: 60px;
+    margin-top: 30px;
+    filter: drop-shadow(0 0 10px #ff1b7a94);
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .score-board {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
     font-size: 1.2rem;
+    margin-right: 100px;display: flex;
+    gap: 2rem;
+    align-items: center;
 }
+.score-board span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem; 
+    color: var(--secondary); 
+}
+
+.score-board span strong {
+    font-weight: bold;
+    color: var(--primary); 
+    text-shadow: 0 0 10px var(--secondary);
+}
+
+.score-board span:first-child strong {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.score-board span:not(:first-child)::after {
+    margin-left: 0.3rem;
+    color: var(--primary);
+}
+
 
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
-}
-
-.start-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
+    width: 100%;
 }
 
-.start-image {
-    max-width: 90%;
-    max-height: 60vh;
-    margin-bottom: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 30px var(--primary);
+.start-logo {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    height: 80px;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+    
 }
 
 .start-btn {
     font-size: 1.5rem;
     padding: 1rem 3rem;
+    margin: 0 auto;
 }
 
 .game-area {
@@ -69,13 +96,28 @@ header {
     flex-direction: column;
     align-items: center;
     min-height: 70vh;
+    gap: 2rem;
+}
+
+/* scroll vertical */
+body.game-started {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Correção do botão Batalhar */
+#battle-btn.hidden {
+    display: none;
+}
+
+#battle-btn:not(.hidden) {
+    display: inline-block;
 }
 
 .controls {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 2rem 0;
+    text-align: center;
+    order: 2; 
 }
 
 .deck {
@@ -95,6 +137,11 @@ header {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    width: 200px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .pokemon-card:hover {
@@ -108,25 +155,31 @@ header {
 }
 
 .pokemon-card img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 150px;
     object-fit: contain;
+    flex-shrink: 0;
 }
 
 .stats {
     margin-top: 1rem;
-    display: grid;
     gap: 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .btn {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .btn:hover {
@@ -152,15 +205,62 @@ header {
 .cpu-card {
     border: 3px solid #ff1b7b;
     box-shadow: 0 0 15px #ff1b7b;
+    margin: 10px;
+    transform: scale(1) !important;
+    opacity: 1;
+    filter: none;
+    width: 200px;
+    min-height: 280px;
+    transition: transform 0.3s ease;
+}
+
+/*container do CPU */
+#cpu-deck {
+    margin-bottom: 2rem;
+    order: 1; 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para os títulos e decks */
+.team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.team-title {
+    color: #2c3e50;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .versus {
-    font-size: 3rem;
+    font-size: 2.5em;
     color: white;
-    text-shadow: 0 0 10px var(--primary);
-    margin: 2rem 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    margin: 0 40px;
+    align-self: center;
     opacity: 0;
     animation: fadeIn 1s ease forwards;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 @keyframes fadeIn {
@@ -198,7 +298,6 @@ header {
 
 .close-modal {
     position: absolute;
-    top: 15px;
     right: 15px;
     background: var(--primary);
     width: 30px;
@@ -248,12 +347,17 @@ header {
     100% { transform: translateX(0); }
 }
 
+/* Container da batalha */
 .battle-stage {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
     margin: 2rem 0;
+    gap: 2rem;
     min-height: 300px;
+    order: 3; 
 }
 
 .battle-pokemon {
@@ -261,12 +365,32 @@ header {
     flex-direction: column;
     align-items: center;
     position: relative;
+    flex: 1;
+    max-width: 300px;
 }
 
 .battle-pokemon img {
     width: 150px;
     height: 150px;
     filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+/* Informação da rodada */
+.round-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+/* Linha de batalha */
+.battle-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+    position: relative;
 }
 
 .health-bar {
@@ -298,6 +422,28 @@ header {
     0% { opacity: 0; transform: scale(0); }
     50% { opacity: 1; transform: scale(1.2); }
     100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Logo durante a batalha */
+.battle-logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.battle-logo img {
+    height: 80px;
+    filter: drop-shadow(0 0 15px rgba(255,27,123,0.7));
+}
+
+@keyframes logoFloat {
+    0% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(-10px) translateX(-50%); }
+    100% { transform: translateY(0) translateX(-50%); }
 }
 
 .result-card {
@@ -341,16 +487,68 @@ header {
 @media (max-width: 768px) {
     .deck {
         grid-template-columns: repeat(2, 1fr); /* 2 colunas para celulares */
+        gap: 10px;
+        padding: 10px;
     }
     
+    .pokemon-card {
+        width: 160px;
+        min-height: 240px;
+    }
+
     .pokemon-card img {
         width: 80px;
-        height: 80px;
+        height: 120px;
+    }
+
+    .battle-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .versus {
+        position: relative;
+        top: auto;
+        margin: 20px 0;
+        transform: rotate(90deg);
+    }
+    
+    .battle-pokemon {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .battle-pokemon img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #cpu-deck {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .game-area {
+        flex-direction: column;
+    }
+
+    .team-title {
+        font-size: 1.4em;
+        padding: 8px 15px;
     }
 }
 
 @media (max-width: 480px) {
     .deck {
         grid-template-columns: 1fr; /* 1 coluna para telas muito pequenas */
+    }
+
+    .pokemon-card {
+        width: 140px;
+        min-height: 220px;
+    }
+    
+    .pokemon-card img {
+        height: 100px;
     }
 }
