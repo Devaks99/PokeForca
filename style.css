@@ -340,7 +340,7 @@ header {
 
 @media (max-width: 768px) {
     .deck {
-        grid-template-columns: repeat(3, 1fr); /* 2 colunas para celulares */
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para celulares */
     }
     
     .pokemon-card img {
@@ -351,6 +351,6 @@ header {
 
 @media (max-width: 480px) {
     .deck {
-        grid-template-columns: 2fr; /* 1 coluna para telas muito pequenas */
+        grid-template-columns: 1fr; /* 1 coluna para telas muito pequenas */
     }
 }
